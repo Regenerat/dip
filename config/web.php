@@ -50,6 +50,11 @@ $config = [
             'rules' => [
             ],
         ],
+
+        'formatter' => [
+            'class' => 'yii\i18n\Formatter',
+            'currencyCode' => 'RUB',
+        ],
         
     ],
     'params' => $params,
