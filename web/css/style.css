@@ -63,3 +63,61 @@ body{
     align-items: center;
     gap: 0 20px;
 }
+
+
+.book_item{
+    background-color: #f6fff8;
+    margin-left: 60px;
+    max-width: 230px;
+}
+
+.new__books{
+    background-color: #cce3de;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 40px;
+    margin-top: 80px;
+    min-height: 140px;
+}
+
+.thumbnail {
+    padding: 20px;
+}
+
+
+
+.buy__btn{
+    border: 1px solid black;
+}
+
+.book__title{
+    font-size: 15px;
+    margin-top: 10px;
+    min-height: 50px;
+}
+
+.book__author{
+    font-size: 12px;
+    margin-top: 10px;
+    min-height: 20px;
+}
+
+.book__price{
+    margin-bottom: 0px !important;
+    font-weight: bold;
+}
+
+.new__books__title{
+    margin-left: 45px;
+    font-weight: bold;
+    font-size: 40px;
+}
+
+.thumbnail img{
+    height: 250px; 
+    overflow: hidden;
+    max-width: 100%;
+    display: block;
+}
