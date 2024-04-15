@@ -4,12 +4,12 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Quest;
+use app\models\Books;
 
 /**
- * QuestSearch represents the model behind the search form of `app\models\Quest`.
+ * BooksSearch represents the model behind the search form of `app\models\Books`.
  */
-class QuestSearch extends Quest
+class BooksSearch extends Books
 {
     /**
      * {@inheritdoc}
@@ -17,8 +17,9 @@ class QuestSearch extends Quest
     public function rules()
     {
         return [
-            [['id', 'age', 'size'], 'integer'],
-            [['name', 'surname', 'email', 'sex', 'number', 'country', 'city'], 'safe'],
+            [['id', 'author_id', 'stockQuantity', 'status_id'], 'integer'],
+            [['image', 'title', 'publisher', 'publicationYear'], 'safe'],
+            [['price'], 'number'],
         ];
     }
 
@@ -40,7 +41,7 @@ class QuestSearch extends Quest
      */
     public function search($params)
     {
-        $query = Quest::find();
+        $query = Books::find();
 
         // add conditions that should always apply here
 
@@ -59,17 +60,16 @@ class QuestSearch extends Quest
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'age' => $this->age,
-            'size' => $this->size,
+            'author_id' => $this->author_id,
+            'publicationYear' => $this->publicationYear,
+            'price' => $this->price,
+            'stockQuantity' => $this->stockQuantity,
+            'status_id' => $this->status_id,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'surname', $this->surname])
-            ->andFilterWhere(['like', 'email', $this->email])
-            ->andFilterWhere(['like', 'sex', $this->sex])
-            ->andFilterWhere(['like', 'number', $this->number])
-            ->andFilterWhere(['like', 'country', $this->country])
-            ->andFilterWhere(['like', 'city', $this->city]);
+        $query->andFilterWhere(['like', 'image', $this->image])
+            ->andFilterWhere(['like', 'title', $this->title])
+            ->andFilterWhere(['like', 'publisher', $this->publisher]);
 
         return $dataProvider;
     }
