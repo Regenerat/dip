@@ -14,6 +14,9 @@ use Yii;
  */
 class Status extends \yii\db\ActiveRecord
 {
+
+    const NEW_STATUS = 1;
+    
     /**
      * {@inheritdoc}
      */
