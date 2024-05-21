@@ -23,7 +23,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'author_id') ?>
 
-    <?= $form->field($model, 'publisher') ?>
+    <?= $form->field($model, 'publisher_id') ?>
 
     <?php // echo $form->field($model, 'publicationYear') ?>
 
@@ -32,6 +32,8 @@ use yii\widgets\ActiveForm;
     <?php // echo $form->field($model, 'stockQuantity') ?>
 
     <?php // echo $form->field($model, 'status_id') ?>
+
+    <?php // echo $form->field($model, 'genre_id') ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Search'), ['class' => 'btn btn-primary']) ?>

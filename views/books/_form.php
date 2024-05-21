@@ -18,15 +18,17 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'author_id')->textInput() ?>
 
-    <?= $form->field($model, 'publisher')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'publisher_id')->textInput() ?>
 
-    <?= $form->field($model, 'publicationYear')->textInput() ?>
+    <?= $form->field($model, 'publicationYear')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'price')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'stockQuantity')->textInput() ?>
 
     <?= $form->field($model, 'status_id')->textInput() ?>
+
+    <?= $form->field($model, 'genre_id')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
