@@ -4,6 +4,8 @@ namespace app\controllers;
 
 use app\models\Books;
 use app\models\BooksSearch;
+use app\models\Status;
+use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -31,6 +33,8 @@ class BooksController extends Controller
         );
     }
 
+
+
     /**
      * Lists all Books models.
      *
@@ -44,6 +48,17 @@ class BooksController extends Controller
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    public function actionNewBooks()
+    {
+        $newBooks = Books::find()
+            ->where(['status' => Status::NEW_STATUS])//
+            ->all();
+
+        return $this->render('newBooks', [
+            'newBooks' => $newBooks,
         ]);
     }
 
