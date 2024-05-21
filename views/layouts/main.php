@@ -57,12 +57,12 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
             <ul class="user__actions">
                 <li class="user__actions__item">
                     <a href="#" class="user__actions__link">
-                        <?= Html::img('@web/images/cart.png', ['alt' => 'Корзина']) ?>
+                        <?= Html::img('@web/images/cart.svg', ['class' => 'nav__icons', 'alt' => 'Корзина']) ?>
                     </a>
                 </li>
                 <li class="user__actions__item">
                     <a href="#" class="user__actions__link">
-                        <?= Html::img('@web/images/user.png', ['alt' => 'Пользователь']) ?>
+                        <?= Html::img('@web/images/user.svg', ['class' => 'nav__icons','alt' => 'Пользователь']) ?>
                     </a>
                 </li>
             </ul>   
