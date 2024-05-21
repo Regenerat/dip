@@ -8,15 +8,12 @@ use Yii;
  * This is the model class for table "user".
  *
  * @property int $id
- * @property string|null $login
- * @property string|null $password
- * @property string|null $email
- * @property string|null $phone
- * @property string|null $fio
- * @property int|null $role_id
+ * @property string $login
+ * @property string $password
+ * @property string $email
+ * @property string $phone
  *
- * @property Report[] $reports
- * @property Role $role
+ * @property Orders[] $orders
  */
 class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {
@@ -28,87 +25,100 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
         return 'user';
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function rules()
     {
         return [
-            [['role_id'], 'integer'],
-            [['login', 'password', 'email', 'phone', 'fio'], 'string', 'max' => 255],
-            [['role_id'], 'exist', 'skipOnError' => true, 'targetClass' => Role::class, 'targetAttribute' => ['role_id' => 'id']],
-            [['email'], 'email', 'message' => 'неправильно, попробуй еще разок'],
-            [['phone'], 'match', 'pattern' => '/^\d{11}/', 'message' => 'неправильно, попробуй еще разок']
+            [['login', 'password', 'email', 'phone'], 'required'],
+            [['login', 'password', 'email', 'phone'], 'string', 'max' => 255],
         ];
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function attributeLabels()
     {
         return [
-            //'id' => 'ID',
+            'id' => 'ID',
             'login' => 'Login',
-            //'password' => 'Password',
+            'password' => 'Password',
             'email' => 'Email',
             'phone' => 'Phone',
-            'fio' => 'Fio',
-            'role_id' => 'Role ID',
         ];
     }
 
-    public function getReports()
+    /**
+     * Gets query for [[Orders]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getOrders()
     {
-        return $this->hasMany(Report::class, ['user_id' => 'id']);
+        return $this->hasMany(Orders::class, ['user_id' => 'id']);
     }
 
-    public function getRole()
-    {
-        return $this->hasOne(Role::class, ['id' => 'role_id']);
-    }
-
-    public static function login($login, $pass) {
-        $user = self::find()->where(['login'=> $login])->one();
-        if($user && $user->validatePassword($pass)) {
-            return $user;
-        }
-        return null;
-    }
-
+    /**
+     * {@inheritdoc}
+     */
     public static function findIdentity($id)
     {
-        return static::find()->where(['id'=> $id])->one();
+        return static::find()->where(['id' => $id])->one();;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public static function findIdentityByAccessToken($token, $type = null)
     {
         return null;
     }
 
+    /**
+     * Finds user by username
+     *
+     * @param string $username
+     * @return static|null
+     */
+    public static function findByLogin($login)
+    {
+        return static::find()->where(['login' => $login])->one();;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getId()
     {
         return $this->id;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getAuthKey()
     {
         return null;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function validateAuthKey($authKey)
     {
         return null;
     }
 
+    /**
+     * Validates password
+     *
+     * @param string $password password to validate
+     * @return bool if password provided is valid for current user
+     */
     public function validatePassword($password)
     {
-        return Yii::$app->getSecurity()->validatePassword($password, $this->password);
-    }
-
-    public function getUsername() {
-        return $this->login;
-    }
-
-    public function setPassword($password) {
-        $this->password = Yii::$app->security->generatePasswordHash($password);
-    }
-
-    public static function findByLogin($login) {
-        return static::find()->where(['login'=> $login])->one();
+        return $this->password === $password;
     }
 }

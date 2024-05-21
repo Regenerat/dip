@@ -4,12 +4,12 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Books;
+use app\models\Cart;
 
 /**
- * BooksSearch represents the model behind the search form of `app\models\Books`.
+ * CartSearch represents the model behind the search form of `app\models\Cart`.
  */
-class BooksSearch extends Books
+class CartSearch extends Cart
 {
     /**
      * {@inheritdoc}
@@ -17,9 +17,7 @@ class BooksSearch extends Books
     public function rules()
     {
         return [
-            [['id', 'author_id', 'publisher_id', 'stockQuantity', 'status_id', 'genre_id'], 'integer'],
-            [['image', 'title', 'publicationYear'], 'safe'],
-            [['price'], 'number'],
+            [['id', 'user_id', 'book_id'], 'integer'],
         ];
     }
 
@@ -41,7 +39,7 @@ class BooksSearch extends Books
      */
     public function search($params)
     {
-        $query = Books::find();
+        $query = Cart::find();
 
         // add conditions that should always apply here
 
@@ -60,17 +58,9 @@ class BooksSearch extends Books
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'author_id' => $this->author_id,
-            'publisher_id' => $this->publisher_id,
-            'price' => $this->price,
-            'stockQuantity' => $this->stockQuantity,
-            'status_id' => $this->status_id,
-            'genre_id' => $this->genre_id,
+            'user_id' => $this->user_id,
+            'book_id' => $this->book_id,
         ]);
-
-        $query->andFilterWhere(['like', 'image', $this->image])
-            ->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'publicationYear', $this->publicationYear]);
 
         return $dataProvider;
     }
