@@ -2,6 +2,7 @@
 
 use app\models\Status;
 use yii\bootstrap5\Html;
+use yii\helpers\Url;
 
 /** @var yii\web\View $this */
 
@@ -61,13 +62,36 @@ $this->registerJsFile('https://code.jquery.com/jquery-3.6.0.min.js', ['position'
                             <div class="caption">
                                 <p class="book__title"><?= Html::encode($book->title) ?></p>
                                 <p class="book__author"><?= Html::encode($book->author->mName. ' ' . mb_substr($book->author->fName, 0, 1). '.' . mb_substr($book->author->lName, 0, 1).'.') ?></p>
-                                <div class="row buy__block">
-                                    <div class="col-6">
-                                        <p class="book__price"><?= Html::encode($book->price)."₽" ?></p>
-                                    </div>
-                                    <div class="col-4">
-                                        <?= Html::a('Купить', ['purchase', 'id' => $book->id], ['class' => 'btn buy__btn']) ?>
-                                    </div>
+                                <div class=" buy__block">
+                                    <span class="book__price"><?= Html::encode($book->price) ?><small>₽</small></span>
+                                    
+                                    <?= Html::a('Купить', '#', [
+                                        'class' => 'btn buy__btn',
+                                        'data-id' => $book->id,
+                                        'onclick' => '
+                                            $.ajax({
+                                                url: "' . Url::to(['cart/update', 'id' => $book->id]) . '",
+                                                type: "post",
+                                                success: function(data) {
+                                                    console.log("Ответ сервера: " + data);
+                                                    if (data === "success") {
+                                                        alert("Книга успешно добавлена в корзину");
+                                                    } else if (data === "already_exists") {
+                                                        alert("Книга уже в корзине");
+                                                    } else if (data === "Пожалуйста, войдите, чтобы добавить книгу в корзину") {
+                                                        alert(data);
+                                                        window.location.href = "' . Url::to(['site/login']) . '"; // Перенаправление на страницу входа
+                                                    } else {
+                                                        alert("Произошла ошибка при добавлении книги в корзину");
+                                                    }
+                                                },
+                                                error: function(xhr, status, error) {
+                                                    console.error("Ошибка AJAX-запроса: " + status + ", " + error);
+                                                    alert("Произошла ошибка при добавлении книги в корзину");
+                                                }
+                                            });
+                                            return false;
+                                    ']) ?>
                                 </div>
                             </div>
                         </div>
