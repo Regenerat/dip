@@ -94,44 +94,40 @@ class CartController extends Controller
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionUpdate($id)
-    {
-        if (Yii::$app->request->isPost) {
-            $userId = Yii::$app->user->id;
+{
+    if (Yii::$app->request->isPost) {
+        $userId = Yii::$app->user->id;
 
-            if ($userId === null) {
-                return 'Пожалуйста, войдите, чтобы добавить книгу в корзину';
-            }
-
-            // Логирование для отладки
-            Yii::info("actionUpdate вызван с id: $id, userId: $userId", __METHOD__);
-
-            // Проверка существования записи
-            $cartItem = Cart::findOne(['user_id' => $userId, 'book_id' => $id]);
-
-            if (!$cartItem) {
-                // Создаем новую запись, если ее нет
-                $cartItem = new Cart();
-                $cartItem->user_id = $userId;
-                $cartItem->book_id = $id;
-
-                // Отладка: выводим содержимое модели перед сохранением
-                VarDumper::dump($cartItem);
-                Yii::info("Содержимое модели Cart перед сохранением: " . VarDumper::dumpAsString($cartItem), __METHOD__);
-
-                if ($cartItem->save()) {
-                    Yii::info("Запись добавлена в корзину: user_id=$userId, book_id=$id", __METHOD__);
-                    return 'success';
-                } else {
-                    Yii::error("Ошибка сохранения записи: " . print_r($cartItem->errors, true), __METHOD__);
-                    return 'error';
-                }
-            } else {
-                return 'already_exists';
-            }
+        if ($userId === null) {
+            return 'Пожалуйста, войдите, чтобы добавить книгу в корзину';
         }
 
-        throw new BadRequestHttpException('Неверный запрос');
+        // Проверяем, существует ли запись в корзине для данного пользователя и книги
+        $cartItem = Cart::findOne(['user_id' => $userId, 'book_id' => $id]);
+
+        if (!$cartItem) {
+            // Создаем новую запись в корзине
+            $cartItem = new Cart();
+            $cartItem->user_id = $userId;
+            $cartItem->book_id = $id;
+
+            if ($cartItem->save()) {
+                // Возвращаем сообщение об успешном добавлении книги в корзину
+                return 'success';
+            } else {
+                // Если сохранение не удалось, возвращаем сообщение об ошибке
+                return 'error';
+            }
+        } else {
+            // Если запись уже существует, возвращаем сообщение о том, что книга уже в корзине
+            return 'already_exists';
+        }
     }
+
+    // Если запрос не является POST-запросом, выдаем ошибку о неверном запросе
+    throw new BadRequestHttpException('Неверный запрос');
+}
+
 
     /**
      * Deletes an existing Cart model.
