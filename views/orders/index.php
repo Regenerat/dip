@@ -34,13 +34,19 @@ $this->registerJs(new JsExpression("
                 $uniqueGroupIds[] = $model->group_id;
             }
         }
-
-        // Выводим уникальные group_id
-        foreach ($uniqueGroupIds as $groupId) {
-            echo Html::a($groupId, '#', ['class' => 'group-link', 'data' => ['group-id' => $groupId]]);
-            echo "<br>";
-        }
         ?>
+        <?php
+        // Выводим уникальные group_id
+        foreach ($uniqueGroupIds as $groupId): ?>
+            <div class="group">
+                <?php
+                    echo "Заказ №" . Html::a($groupId, '#', ['class' => 'group-link', 'data' => ['group-id' => $groupId]]);
+                    echo "<br>";
+                ?>
+            </div>
+            
+        <?php endforeach; ?>
+        
     </div>
 </div>
 

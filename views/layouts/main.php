@@ -61,7 +61,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
                     </a>
                 </li>
                 <li class="user__actions__item">
-                    <a href="#" class="user__actions__link">
+                    <a href="/site/login/" class="user__actions__link">
                         <?= Html::img('@web/images/user.svg', ['class' => 'nav__icons','alt' => 'Пользователь']) ?>
                     </a>
                 </li>
