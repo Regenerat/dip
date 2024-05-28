@@ -13,7 +13,6 @@ use Yii;
  * @property int $book_id
  * @property int $quantity
  * @property int $places_id
- * @property string $group_id
  *
  * @property Books $book
  * @property Places $places
@@ -35,11 +34,10 @@ class Orders extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['date', 'user_id', 'book_id', 'quantity',  'group_id'], 'required'],
+            [['date', 'user_id', 'book_id', 'quantity'], 'required'],
             ['places_id', 'required', 'message' => 'Пожалуйста, выберите место получения.'],
             [['date'], 'safe'],
             [['user_id', 'book_id', 'quantity', 'places_id'], 'integer'],
-            [['group_id'], 'string', 'max' => 255],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['user_id' => 'id']],
             [['book_id'], 'exist', 'skipOnError' => true, 'targetClass' => Books::class, 'targetAttribute' => ['book_id' => 'id']],
             [['places_id'], 'exist', 'skipOnError' => true, 'targetClass' => Places::class, 'targetAttribute' => ['places_id' => 'id']],
@@ -58,7 +56,6 @@ class Orders extends \yii\db\ActiveRecord
             'book_id' => 'Book ID',
             'quantity' => 'Quantity',
             'places_id' => '',
-            'group_id' => 'Group ID',
         ];
     }
 
