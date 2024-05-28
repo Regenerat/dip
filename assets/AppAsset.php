@@ -25,6 +25,7 @@ class AppAsset extends AssetBundle
         'css/style.css',
         'css/page.css',
         'css/cart.css',
+        'css/orders.css',
     ];
     public $js = [
         'https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js',
