@@ -11,14 +11,17 @@ use Yii;
  * @property string $image
  * @property string $title
  * @property int $author_id
- * @property string $publisher
+ * @property int $publisher_id
  * @property string $publicationYear
  * @property float $price
  * @property int $stockQuantity
  * @property int $status_id
+ * @property int $genre_id
  *
  * @property Authors $author
- * @property OrderDetails[] $orderDetails
+ * @property Genre $genre
+ * @property Orders[] $orders
+ * @property Publisher $publisher
  * @property Status $status
  */
 class Books extends \yii\db\ActiveRecord
@@ -37,13 +40,14 @@ class Books extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['image', 'title', 'author_id', 'publisher', 'publicationYear', 'price', 'stockQuantity', 'status_id'], 'required'],
-            [['author_id', 'stockQuantity', 'status_id'], 'integer'],
-            [['publicationYear'], 'safe'],
+            [['image', 'title', 'author_id', 'publisher_id', 'publicationYear', 'price', 'stockQuantity', 'status_id', 'genre_id'], 'required'],
+            [['author_id', 'publisher_id', 'stockQuantity', 'status_id', 'genre_id'], 'integer'],
             [['price'], 'number'],
-            [['image', 'title', 'publisher'], 'string', 'max' => 255],
+            [['image', 'title', 'publicationYear'], 'string', 'max' => 255],
             [['author_id'], 'exist', 'skipOnError' => true, 'targetClass' => Authors::class, 'targetAttribute' => ['author_id' => 'id']],
             [['status_id'], 'exist', 'skipOnError' => true, 'targetClass' => Status::class, 'targetAttribute' => ['status_id' => 'id']],
+            [['genre_id'], 'exist', 'skipOnError' => true, 'targetClass' => Genre::class, 'targetAttribute' => ['genre_id' => 'id']],
+            [['publisher_id'], 'exist', 'skipOnError' => true, 'targetClass' => Publisher::class, 'targetAttribute' => ['publisher_id' => 'id']],
         ];
     }
 
@@ -57,11 +61,12 @@ class Books extends \yii\db\ActiveRecord
             'image' => 'Image',
             'title' => 'Title',
             'author_id' => 'Author ID',
-            'publisher' => 'Publisher',
+            'publisher_id' => 'Publisher ID',
             'publicationYear' => 'Publication Year',
             'price' => 'Price',
             'stockQuantity' => 'Stock Quantity',
             'status_id' => 'Status ID',
+            'genre_id' => 'Genre ID',
         ];
     }
 
@@ -76,13 +81,33 @@ class Books extends \yii\db\ActiveRecord
     }
 
     /**
-     * Gets query for [[OrderDetails]].
+     * Gets query for [[Genre]].
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getOrderDetails()
+    public function getGenre()
     {
-        return $this->hasMany(OrderDetails::class, ['book_id' => 'id']);
+        return $this->hasOne(Genre::class, ['id' => 'genre_id']);
+    }
+
+    /**
+     * Gets query for [[Orders]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getOrders()
+    {
+        return $this->hasMany(Orders::class, ['book_id' => 'id']);
+    }
+
+    /**
+     * Gets query for [[Publisher]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPublisher()
+    {
+        return $this->hasOne(Publisher::class, ['id' => 'publisher_id']);
     }
 
     /**
