@@ -4,6 +4,8 @@ namespace app\controllers;
 
 use app\models\Books;
 use app\models\BooksSearch;
+use yii\web\Response;
+use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -55,6 +57,7 @@ class BooksController extends Controller
      */
     public function actionView($id)
     {
+        
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
