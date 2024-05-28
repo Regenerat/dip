@@ -35,7 +35,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
 <main id="main" class="flex-shrink-0" role="main">
     <div class="container">
         <div class="header_inner">
-            <a href="#" class="logo">
+            <a href='/' class="logo">
                 <?= Html::img('@web/images/logo.png', ['alt' => 'Логотип', 'class' => 'logo__img']) ?>
             </a>
             <nav class="menu">
@@ -56,7 +56,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
             </nav>
             <ul class="user__actions">
                 <li class="user__actions__item">
-                    <a href="#" class="user__actions__link">
+                    <a href='/cart/' class="user__actions__link">
                         <?= Html::img('@web/images/cart.svg', ['class' => 'nav__icons', 'alt' => 'Корзина']) ?>
                     </a>
                 </li>

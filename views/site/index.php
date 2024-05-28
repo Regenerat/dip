@@ -106,7 +106,6 @@ $newBooks = \app\models\Books::find()
                                 <p class="book__author"><?= Html::encode($book->author->mName . ' ' . mb_substr($book->author->fName, 0, 1) . '.' . mb_substr($book->author->lName, 0, 1) . '.') ?></p>
                                 <div class="buy__block">
                                     <span class="book__price"><?= Html::encode($book->price) ?><small>₽</small></span>
-                                    
                                     <?= Html::a('Купить', '#', [
                                         'class' => 'btn buy__btn ms-4',
                                         'data-id' => $book->id,
