@@ -124,3 +124,15 @@ body{
     max-width: 100%;
     display: block;
 }
+
+.modal-no-backdrop .modal-backdrop {
+    display: none;
+}
+
+.modal-no-backdrop .modal {
+    pointer-events: auto; /* Разрешить клики через модальное окно */
+}
+
+.modal-backdrop.show {
+    opacity: 0.3; /* Прозрачность фона модального окна */
+}
