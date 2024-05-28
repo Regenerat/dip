@@ -17,8 +17,10 @@ use Yii;
  * @property int $stockQuantity
  * @property int $status_id
  * @property int $genre_id
+ * @property string $description
  *
  * @property Authors $author
+ * @property Cart[] $carts
  * @property Genre $genre
  * @property Orders[] $orders
  * @property Publisher $publisher
@@ -40,9 +42,10 @@ class Books extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['image', 'title', 'author_id', 'publisher_id', 'publicationYear', 'price', 'stockQuantity', 'status_id', 'genre_id'], 'required'],
+            [['image', 'title', 'author_id', 'publisher_id', 'publicationYear', 'price', 'stockQuantity', 'status_id', 'genre_id', 'description'], 'required'],
             [['author_id', 'publisher_id', 'stockQuantity', 'status_id', 'genre_id'], 'integer'],
             [['price'], 'number'],
+            [['description'], 'string'],
             [['image', 'title', 'publicationYear'], 'string', 'max' => 255],
             [['author_id'], 'exist', 'skipOnError' => true, 'targetClass' => Authors::class, 'targetAttribute' => ['author_id' => 'id']],
             [['status_id'], 'exist', 'skipOnError' => true, 'targetClass' => Status::class, 'targetAttribute' => ['status_id' => 'id']],
@@ -67,6 +70,7 @@ class Books extends \yii\db\ActiveRecord
             'stockQuantity' => 'Stock Quantity',
             'status_id' => 'Status ID',
             'genre_id' => 'Genre ID',
+            'description' => 'Description',
         ];
     }
 
@@ -78,6 +82,16 @@ class Books extends \yii\db\ActiveRecord
     public function getAuthor()
     {
         return $this->hasOne(Authors::class, ['id' => 'author_id']);
+    }
+
+    /**
+     * Gets query for [[Carts]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCarts()
+    {
+        return $this->hasMany(Cart::class, ['book_id' => 'id']);
     }
 
     /**
