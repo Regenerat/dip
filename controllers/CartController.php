@@ -11,6 +11,7 @@ use yii\filters\VerbFilter;
 
 use Yii;
 use yii\web\BadRequestHttpException;
+use yii\web\Response;
 
 /**
  * CartController implements the CRUD actions for Cart model.
@@ -110,6 +111,7 @@ class CartController extends Controller
             $cartItem = new Cart();
             $cartItem->user_id = $userId;
             $cartItem->book_id = $id;
+            $cartItem->count = 1;
 
             if ($cartItem->save()) {
                 // Возвращаем сообщение об успешном добавлении книги в корзину
@@ -128,6 +130,71 @@ class CartController extends Controller
     throw new BadRequestHttpException('Неверный запрос');
 }
 
+public function actionCountUpdate()
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+
+        try {
+            $id = Yii::$app->request->post('id');
+            $action = Yii::$app->request->post('action');
+
+            if (!$id || !$action) {
+                throw new \Exception('Invalid parameters');
+            }
+
+            $model = Cart::findOne($id);
+
+            if (!$model) {
+                throw new \Exception('Model not found');
+            }
+
+            if ($action == 'increase') {
+                $model->count += 1;
+            } elseif ($action == 'decrease') {
+                if ($model->count > 1) {
+                    $model->count -= 1;
+                } else {
+                    throw new \Exception('Cannot decrease quantity below 1');
+                }
+            }
+
+            if (!$model->save()) {
+                throw new \Exception('Failed to save model');
+            }
+
+            // Обновление общей суммы и количества товаров
+            $userId = Yii::$app->user->identity->id;
+            $cartItems = Cart::find()->where(['user_id' => $userId])->all();
+            $totalCount = 0;
+            $totalSum = 0;
+
+            foreach ($cartItems as $item) {
+                $totalCount += $item->count;
+                $totalSum += $item->count * $item->book->price;
+            }
+
+            // Определение правильного окончания для слова "товар"
+            $cnt = "товаров";
+            if ($totalCount == 1) {
+                $cnt = "товар";
+            } elseif ($totalCount >= 2 && $totalCount <= 4) {
+                $cnt = "товара";
+            }
+
+            return [
+                'count' => $model->count,
+                'totalCount' => $totalCount,
+                'totalSum' => $totalSum,
+                'countLabel' => $cnt
+            ];
+        } catch (\Exception $e) {
+            Yii::error($e->getMessage(), __METHOD__);
+            return [
+                'error' => $e->getMessage()
+            ];
+        }
+    }
+
 
     /**
      * Deletes an existing Cart model.
@@ -136,11 +203,27 @@ class CartController extends Controller
      * @return \yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id)
+    public function actionDelete()
     {
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        $id = Yii::$app->request->post('id');
+    
+        Yii::debug('Получен запрос на удаление элемента с id: ' . $id);
+    
+        if (!$id) {
+            Yii::debug('Параметр id отсутствует или пуст');
+            return ['success' => false, 'error' => 'Параметр id отсутствует или пуст'];
+        }
+    
+        $model = $this->findModel($id); // Найдем модель по переданному $id
+        if ($model !== null) {
+            Yii::debug('Найдена модель для удаления');
+            $model->delete(); // Удаляем найденную модель
+            return ['success' => true];
+        } else {
+            Yii::debug('Не удалось найти модель для удаления');
+            return ['success' => false, 'error' => 'Не удалось найти запись для удаления.'];
+        }
     }
 
     /**

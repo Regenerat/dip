@@ -10,6 +10,7 @@ use Yii;
  * @property int $id
  * @property int $user_id
  * @property int $book_id
+ * @property int $count
  * @property Books $book
  */
 class Cart extends \yii\db\ActiveRecord
@@ -28,8 +29,8 @@ class Cart extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'book_id'], 'required'],
-            [['user_id', 'book_id'], 'integer'],
+            [['user_id', 'book_id', 'count'], 'required'],
+            [['user_id', 'book_id', 'count'], 'integer'],
         ];
     }
 
@@ -42,6 +43,7 @@ class Cart extends \yii\db\ActiveRecord
             'id' => 'ID',
             'user_id' => 'User ID',
             'book_id' => 'Book ID',
+            'count' => 'Count',
         ];
     }
 
