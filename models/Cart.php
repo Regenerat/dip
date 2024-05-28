@@ -10,6 +10,7 @@ use Yii;
  * @property int $id
  * @property int $user_id
  * @property int $book_id
+ * @property Books $book
  */
 class Cart extends \yii\db\ActiveRecord
 {
@@ -42,5 +43,15 @@ class Cart extends \yii\db\ActiveRecord
             'user_id' => 'User ID',
             'book_id' => 'Book ID',
         ];
+    }
+
+    /**
+     * Gets query for [[Author]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getBook()
+    {
+        return $this->hasOne(Books::class, ['id' => 'book_id']);
     }
 }
