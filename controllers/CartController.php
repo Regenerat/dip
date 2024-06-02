@@ -46,6 +46,10 @@ class CartController extends Controller
         $searchModel = new CartSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
+        if (Yii::$app->user->isGuest) {
+            return $this->redirect(['/']); // Перенаправление на страницу заказов
+        }
+
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,

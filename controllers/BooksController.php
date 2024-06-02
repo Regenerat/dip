@@ -2,10 +2,13 @@
 
 namespace app\controllers;
 
+use app\models\Authors;
 use app\models\Books;
 use app\models\BooksSearch;
+use app\models\Genre;
 use yii\web\Response;
 use Yii;
+use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -40,12 +43,36 @@ class BooksController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new BooksSearch();
-        $dataProvider = $searchModel->search($this->request->queryParams);
+        $genres = Genre::find()->all();
+        $authors = Authors::find()->all();
+
+        $query = Books::find();
+
+        // Добавление фильтров
+        if ($genreId = Yii::$app->request->get('genre_id')) {
+            $query->andWhere(['genre_id' => $genreId]);
+        }
+        if ($authorId = Yii::$app->request->get('author_id')) {
+            $query->andWhere(['author_id' => $authorId]);
+        }
+        if ($minPrice = Yii::$app->request->get('min_price')) {
+            $query->andWhere(['>=', 'price', $minPrice]);
+        }
+        if ($maxPrice = Yii::$app->request->get('max_price')) {
+            $query->andWhere(['<=', 'price', $maxPrice]);
+        }
+        if ($year = Yii::$app->request->get('year')) {
+            $query->andWhere(['publicationYear' => $year]);
+        }
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'genres' => $genres,
+            'authors' => $authors,
         ]);
     }
 

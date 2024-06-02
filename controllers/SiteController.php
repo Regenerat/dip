@@ -10,6 +10,7 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\User;
+use app\models\SignupForm;
 
 class SiteController extends Controller
 {
@@ -86,6 +87,31 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
+
+    public function actionSignup()
+{
+    $model = new SignupForm();
+
+    if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+        $user = new User();
+        $user->login = $model->login;
+        $user->password = $model->password; // Не шифруем пароль
+        $user->email = $model->email;
+        $user->phone = $model->phone;
+
+        if ($user->save()) {
+            Yii::$app->session->setFlash('success', 'Регистрация прошла успешно!');
+            return $this->goHome(); // Перенаправляем пользователя после успешной регистрации
+        } else {
+            Yii::$app->session->setFlash('error', 'Произошла ошибка при регистрации.');
+        }
+    }
+
+    return $this->render('signup', [
+        'model' => $model,
+    ]);
+}
+
 
     /**
      * Logout action.
