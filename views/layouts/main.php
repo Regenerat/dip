@@ -44,10 +44,10 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
                         <a href="/books" class="menu__link">Книги</a>
                     </li>
                     <li class="menu__item">
-                        <a href="#" class="menu__link">Печатная продукция</a>
+                        <a href="/site/about" class="menu__link">О нас</a>
                     </li>
                     <li class="menu__item">
-                        <a href="#" class="menu__link">Упаковочные материалы</a>
+                        <a href="/site/contact-info" class="menu__link">Контактная информация</a>
                     </li>
                     <!-- <li class="menu__item">
                         <a href="#" class="menu__link">что-то</a>
@@ -74,8 +74,8 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
 <footer id="footer" class="mt-auto py-3 bg-light">
     <div class="container">
         <div class="row text-muted">
-            <div class="col-md-6 text-center text-md-start">&copy; My Company <?= date('Y') ?></div>
-            <div class="col-md-6 text-center text-md-end"><?= Yii::powered() ?></div>
+            <div class="col-md-6 text-center text-md-start"><strong>Email:</strong> info@rebook.com</div>
+            <div class="col-md-6 text-center text-md-end"><strong>Телефон:</strong> +1 (234) 567-890</div>
         </div>
     </div>
 </footer>

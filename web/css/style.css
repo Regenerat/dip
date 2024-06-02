@@ -71,7 +71,9 @@ body{
 
 
 .book_item{
-    background-color: #f6fff8;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
     margin-left: 60px;
     max-width: 230px;
 }
