@@ -1,0 +1,140 @@
+html{
+    box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before{
+    box-sizing: inherit;
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+ul{
+    list-style: none;
+}
+
+.container{
+    max-width: 1240px;
+    margin: 0 auto;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+body{
+    color: #151618;
+    font-family: "Open Sans", sans-serif;
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 1.5;
+}
+
+.header_inner{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 30px;
+    min-height: 140px;
+}
+
+.logo{
+    margin-top: 15px;
+}
+
+.logo__img{
+    height: 120px;
+}
+
+.nav__icons{
+    width: 60px;
+    height: 60px;
+}
+
+.menu__list{
+    display: flex;
+    align-items: center;
+    gap: 0 65px;
+    font-weight: 400;
+    font-size: 18px;
+    margin-left: 35px;
+}
+
+.user__actions{
+    display: flex;
+    align-items: center;
+    gap: 0 20px;
+}
+
+
+.book_item{
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-left: 60px;
+    max-width: 230px;
+}
+
+.new__books{
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 40px;
+    margin-top: 80px;
+    min-height: 140px;
+}
+
+.thumbnail {
+    padding: 20px;
+}
+
+
+
+.buy__btn{
+    border: 1px solid black;
+}
+
+.book__title{
+    font-size: 15px;
+    margin-top: 10px;
+    min-height: 50px;
+}
+
+.book__author{
+    font-size: 12px;
+}
+
+.book__price{
+    margin-bottom: 0px !important;
+    font-weight: bold;
+}
+
+.new__books__title{
+    margin-left: 45px;
+    font-weight: bold;
+    font-size: 40px;
+}
+
+.thumbnail img{
+    height: 250px; 
+    overflow: hidden;
+    max-width: 100%;
+    display: block;
+}
+
+.modal-no-backdrop .modal-backdrop {
+    display: none;
+}
+
+.modal-no-backdrop .modal {
+    pointer-events: auto; /* Разрешить клики через модальное окно */
+}
+
+.modal-backdrop.show {
+    opacity: 0.3; /* Прозрачность фона модального окна */
+}

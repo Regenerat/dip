@@ -1,0 +1,164 @@
+/* Общие стили */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Заголовок каталога */
+.new__books__title {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.new__title {
+    margin-left: 0px !important;
+}
+
+/* Стили для элемента книги */
+.new__book_item {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.thumbnail {
+    margin: 0;
+    padding: 0;
+}
+
+.thumbnail img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    transition: transform 0.2s ease;
+}
+
+.thumbnail:hover img {
+    transform: scale(1.05);
+}
+
+.caption {
+    margin-top: 15px;
+}
+
+.book__title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.book__author {
+    color: #777;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.buy__block {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+
+.book__price {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
+.book__buy__btn {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 10px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    margin-left: auto;
+}
+
+.buy__btn:hover {
+    background-color: #0056b3;
+}
+
+/* Стили для боковой панели (фильтров) */
+.sidebar {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+.sidebar h3 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #333;
+    font-family: 'Roboto', sans-serif;
+}
+
+.sidebar .form-group {
+    margin-bottom: 20px;
+}
+
+.sidebar .form-group label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    font-family: 'Roboto', sans-serif;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.sidebar .form-control {
+    font-size: 14px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+/* Адаптивные стили */
+@media (max-width: 920px) {
+    .new__book_item {
+        margin-right: 0;
+    }
+}
+
+/* Медиа-запрос для экранов менее 970px */
+@media (max-width: 970px) {
+    .col-md-3 {
+        /* Устанавливаем ширину на 100% */
+        width: 100% !important;
+        /* Убираем левый и правый внешний отступы, если они мешают */
+        margin-left: 0;
+        margin-right: 0;
+        
+        /* Другие стили по необходимости */
+    }
+}
+
+@media (max-width: 970px) {
+    .row>* {
+        /* Устанавливаем ширину на 100% */
+        width: 100% !important;
+        
+        /* Другие стили по необходимости */
+    }
+}

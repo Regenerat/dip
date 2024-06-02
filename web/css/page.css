@@ -1,0 +1,147 @@
+.page__img{
+    /* height: 20%; */
+    object-fit: contain;
+    max-width: 300px;
+}
+
+.page__info-annotation{
+    padding-left: 20px;
+}
+
+.page__description{
+    word-break: normal;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 172%;
+    box-sizing: border-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 7; /* Количество строк до обрезки */
+    -webkit-box-orient: vertical;
+}
+
+.page__annotation{
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 136%;
+    
+}
+
+.description{
+    word-break: normal;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 172%;
+}
+
+.page__title{
+    font-size: 2rem;
+    font-variant-numeric: lining-nums proportional-nums;
+    font-weight: 900;
+    line-height: 136%;
+    margin-bottom: 5px !important;
+}
+
+.page__author{
+    font-size: 1rem;
+    font-variant-numeric: lining-nums proportional-nums;
+    font-weight: 200;
+    line-height: 136%;
+}
+
+.page__buy{
+    border: 1.5px solid #F0F0F0;
+    /* border-radius: 5px; */
+    padding-left: 28px;
+    padding-right: 28px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--base-200);
+}
+
+.page__buy__quantity{
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.page__buy__quantity img{
+    max-height: 25px;
+}
+
+.page__buy__quantity__check{
+    /* padding-left: 5px; */
+    font-size: 1rem;
+    font-variant-numeric: lining-nums proportional-nums;
+    font-weight: 200;
+    line-height: 136%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 0px !important;
+    padding-left: 8px;
+}
+
+.page__buy__btn{
+    background-color: #3c72bf;
+    color: #F0F0F0;
+    max-height: 55px;
+    min-height: 45px;
+    max-width: 200px;
+    min-width: 150px;
+    font-family: AlergiaNormal, Trebuchet MS Fallback, sans-serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 140%;
+}
+
+.page__buy__btn:hover{
+    background-color: #3265ac;
+    color: #F0F0F0;
+}
+
+.buy__order{
+    font-size: .75rem;
+    font-weight: 500;
+    letter-spacing: .08em;
+    line-height: 132%;
+    text-transform: uppercase;
+}
+
+.btn__mb{
+    margin-bottom: 40px;
+}
+
+.page__feature{
+    display: flex;
+    align-items: center;
+}
+
+.page__feature__title{
+    color: #7a7a7a;
+    width: 100px;
+    font-family: AlergiaNormal, Trebuchet MS Fallback, sans-serif;
+    font-size: .875rem;
+    font-weight: 400;
+    gap: 20px;
+    line-height: 140%;
+}
+
+.page__feature__name{
+    padding-left: 20px;
+    font-family: AlergiaNormal, Trebuchet MS Fallback, sans-serif;
+    font-size: .875rem;
+    font-weight: 530;
+    gap: 20px;
+    line-height: 140%;
+}
+
+.description__title{
+    margin-top: 60px;
+    color: black;
+    font-family: Merriweather, Adjusted Georgia Fallback, serif;
+    font-size: 1.80rem;
+    font-variant-numeric: lining-nums proportional-nums;
+    font-weight: 550;
+    line-height: 132%;
+}

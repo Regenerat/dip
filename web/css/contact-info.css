@@ -1,0 +1,76 @@
+/* File: web/css/contact-info.css */
+
+.site-contact-info {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.site-contact-info h1 {
+    color: #444;
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.site-contact-info h2 {
+    color: #555;
+    font-size: 2em;
+    margin-top: 30px;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+}
+
+.site-contact-info p {
+    margin-bottom: 20px;
+}
+
+.site-contact-info .contact-info {
+    background-color: #eee;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.site-contact-info .contact-info strong {
+    display: block;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.site-contact-info .form-group {
+    margin-bottom: 20px;
+}
+
+.site-contact-info .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.site-contact-info .form-group input,
+.site-contact-info .form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.site-contact-info .form-group button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+}
+
+.site-contact-info .form-group button:hover {
+    background-color: #0056b3;
+}

@@ -1,0 +1,125 @@
+.order{
+    display: flex;
+}
+
+.cart__order{
+    display: flex;
+    flex-direction: column;
+}
+
+.cart{
+    display: flex;
+}
+
+.cart__image{
+    margin-bottom: 60px;
+}
+
+.cart__image img{
+    max-height: 160px;
+    object-fit: contain;
+}
+
+.cart__info{
+    min-width: 50%;
+    display: flex;
+    flex-direction: column;
+    padding-left: 20px;
+}
+
+.cart__title{
+    font-family: AlergiaNormal, Trebuchet MS Fallback, sans-serif;
+    font-weight: 400;
+}
+
+.cart__author{
+    font-family: AlergiaNormal, Trebuchet MS Fallback, sans-serif;
+    font-size: .875rem;
+    font-weight: 400;
+    line-height: 140%;
+}
+
+.cart__price{
+    min-width: 20%;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 24px;
+}
+
+.cart__order__info{
+    border: 1.5px solid #F0F0F0;
+    padding-left: 28px;
+    padding-right: 28px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.cart__count{
+    font-family: AlergiaNormal, Trebuchet MS Fallback, sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    justify-content: space-between;
+    line-height: 136%;
+}
+
+.cart__price__block{
+    display: flex;
+}
+
+.cart__sum{
+    margin-left: auto;
+}
+
+.cart__itog{
+
+}
+
+.cart__button{
+    /* max-height: 40px; */
+    border: 2px solid #F0F0F0;
+    background-color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.increase-btn img {
+    vertical-align: middle; /* Чтобы изображение выравнивалось по вертикали в кнопке */
+}
+
+.cart__info__price{
+    /* margin-left: 10px; */
+    min-height: 75px;
+    text-align: right;
+}
+
+.cart__delete{
+    min-width: 12%;
+}
+
+.delete-btn{
+    border: 1px solid white;
+    background-color: white;
+}
+
+.delete-btn img{
+    max-height: 18px;
+}
+
+.del{
+    display: flex;
+    align-items: end;
+}
+
+.del__text{
+    font-family: AlergiaNormal, Trebuchet MS Fallback, sans-serif;
+    font-size: 1.0rem;
+    font-weight: 400;
+    line-height: 136%;
+    text-align: right;
+    padding-right: 0px !important;
+}
+
+.order__btn{
+    margin-top: 20px;
+    width: 100%;
+}
