@@ -55,6 +55,7 @@ $config = [
         'formatter' => [
             'class' => 'yii\i18n\Formatter',
             'currencyCode' => 'RUB',
+            'language' => 'ru-RU',
         ],
         
     ],
