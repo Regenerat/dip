@@ -41,7 +41,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
             <nav class="menu">
                 <ul class="menu__list">
                     <li class="menu__item">
-                        <a href="#" class="menu__link">Книги</a>
+                        <a href="/books" class="menu__link">Книги</a>
                     </li>
                     <li class="menu__item">
                         <a href="#" class="menu__link">Печатная продукция</a>
@@ -49,9 +49,9 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
                     <li class="menu__item">
                         <a href="#" class="menu__link">Упаковочные материалы</a>
                     </li>
-                    <li class="menu__item">
+                    <!-- <li class="menu__item">
                         <a href="#" class="menu__link">что-то</a>
-                    </li>
+                    </li> -->
                 </ul>
             </nav>
             <ul class="user__actions">
