@@ -33,6 +33,8 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
         return [
             [['login', 'password', 'email', 'phone'], 'required'],
             [['login', 'password', 'email', 'phone'], 'string', 'max' => 255],
+            ['email', 'email'],
+            ['phone', 'match', 'pattern' => '/^\+?[0-9]{10,15}$/', 'message' => 'Phone number must be between 10 and 15 digits, and can start with a +'],
         ];
     }
 
@@ -43,10 +45,10 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     {
         return [
             'id' => 'ID',
-            'login' => 'Login',
-            'password' => 'Password',
+            'login' => 'Логин',
+            'password' => 'Пароль',
             'email' => 'Email',
-            'phone' => 'Phone',
+            'phone' => 'Телефон',
         ];
     }
 
