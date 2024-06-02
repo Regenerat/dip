@@ -1,0 +1,47 @@
+/* web/css/site-login.css */
+.site-login {
+    margin-top: 50px;
+}
+
+.site-login h1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.site-login .login-form-wrapper {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 30px;
+    background-color: #f9f9f9;
+    margin-bottom: 60px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-check {
+    display: flex;
+    align-items: center;
+}
+
+.form-check-input {
+    margin-right: 10px;
+}
+
+.btn-block {
+    width: 100%;
+}
+
+.text-center {
+    margin-top: 15px;
+}
+
+.text-center a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+.text-center a:hover {
+    text-decoration: underline;
+}

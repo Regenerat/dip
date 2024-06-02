@@ -38,3 +38,46 @@
 .group{
     margin-bottom: 30px;
 }
+
+.user-info {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.user-info h4 {
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.user-info p {
+    margin-bottom: 10px;
+}
+
+.user-info a {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.group {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.group a {
+    text-decoration: none;
+    color: #333;
+}
+
+.group a:hover {
+    color: #000;
+}
+
+.group-link {
+    cursor: pointer;
+}
